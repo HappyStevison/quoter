@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #quote {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #next-btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #next-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="quote">Loading quote...</div>
+    <button id="next-btn">Next Quote</button>
+
+    <script>
+        let quotes = [];
+        let currentIndex = 0;
+
+        // Fetch quotes from the server
+        async function fetchQuotes() {
+            try {
+                const response = await fetch('/quotes');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch quotes');
+                }
+                quotes = await response.json();
+                showQuote();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('quote').textContent = 'Failed to load quotes.';
+            }
+        }
+
+        // Display the current quote
+        function showQuote() {
+            if (quotes.length === 0) {
+                document.getElementById('quote').textContent = 'No quotes available.';
+                return;
+            }
+            document.getElementById('quote').textContent = quotes[currentIndex].text;
+        }
+
+        // Show the next quote
+        function nextQuote() {
+            if (quotes.length === 0) return;
+            currentIndex = (currentIndex + 1) % quotes.length; // Loop back to the first quote
+            showQuote();
+        }
+
+        // Event listener for the "Next Quote" button
+        document.getElementById('next-btn').addEventListener('click', nextQuote);
+
+        // Fetch quotes when the page loads
+        fetchQuotes();
+    </script>
+</body>
+</html>

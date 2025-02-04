@@ -1,0 +1,25 @@
+{
+  "name": "my-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HappyStevison/quoter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HappyStevison/quoter/issues"
+  },
+  "homepage": "https://github.com/HappyStevison/quoter#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2"
+  }
+}
