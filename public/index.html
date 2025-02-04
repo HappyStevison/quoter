@@ -45,14 +45,16 @@
         // Fetch quotes from the server
         async function fetchQuotes() {
             try {
+                console.log('Fetching qoutes')
                 const response = await fetch('/quotes');
                 if (!response.ok) {
                     throw new Error('Failed to fetch quotes');
                 }
                 quotes = await response.json();
+                console.log('Quotes fetched: ', data);
                 showQuote();
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error fetching quotes', error);
                 document.getElementById('quote').textContent = 'Failed to load quotes.';
             }
         }
@@ -63,6 +65,7 @@
                 document.getElementById('quote').textContent = 'No quotes available.';
                 return;
             }
+            console.log(quotes)
             document.getElementById('quote').textContent = quotes[currentIndex].text;
         }
 

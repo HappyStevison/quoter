@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 // Replace this with your GitHub raw JSON URL
-const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/username/repo-name/main/data.json';
+const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/HappyStevison/quoter/main/data.json';
 
 // Serve static files (e.g., HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
